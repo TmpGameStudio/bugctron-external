@@ -20,7 +20,7 @@ exports.default = async function notarizeMacos(context) {
     )
   ) {
     console.warn(
-      'Skipping notarizing step. APPLE_ID, APPLE_ID_PASS, and APPLE_TEAM_ID env variables must be set',
+      'Skipping notarizing step. APPLE_ID, APPLE_ID_PASS, and APPLE_TEAM_ID env variables must be set'
     );
     return;
   }

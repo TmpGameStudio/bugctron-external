@@ -1,0 +1,20 @@
+{
+  "name": "bugctron-core",
+  "version": "1.0.0",
+  "description": "Core backend functionality for bug reporting system",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "electron-log": "^5.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  },
+  "keywords": ["bug-reporter", "electron", "filesystem"],
+  "license": "MIT"
+}

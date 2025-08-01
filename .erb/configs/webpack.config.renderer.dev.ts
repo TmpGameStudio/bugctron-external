@@ -60,6 +60,10 @@ const configuration: webpack.Configuration = {
     },
   },
 
+  externals: {
+    'bugctron-core': 'commonjs2 bugctron-core',
+  },
+
   module: {
     rules: [
       {

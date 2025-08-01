@@ -12,6 +12,7 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import { BugReporter } from 'bugctron-core';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
@@ -24,6 +25,7 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
+let bugReporter: BugReporter | null = null;
 
 ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
@@ -50,8 +52,8 @@ const installExtensions = async () => {
 
   return installer
     .default(
-      extensions.map((name) => installer[name]),
-      forceDownload,
+      extensions.map(name => installer[name]),
+      forceDownload
     )
     .catch(console.log);
 };
@@ -59,6 +61,17 @@ const installExtensions = async () => {
 const createWindow = async () => {
   if (isDebug) {
     await installExtensions();
+  }
+
+  // Initialize bug reporter
+  const reportsDir = path.join(app.getPath('userData'), 'bug-reports');
+  try {
+    bugReporter = new BugReporter({ reportsDir });
+    bugReporter.init();
+    log.info('BugReporter initialized successfully');
+  } catch (error) {
+    log.error('Failed to initialize BugReporter:', error);
+    // Continue without BugReporter if it fails
   }
 
   const RESOURCES_PATH = app.isPackaged
@@ -102,7 +115,7 @@ const createWindow = async () => {
   menuBuilder.buildMenu();
 
   // Open urls in the user's browser
-  mainWindow.webContents.setWindowOpenHandler((edata) => {
+  mainWindow.webContents.setWindowOpenHandler(edata => {
     shell.openExternal(edata.url);
     return { action: 'deny' };
   });

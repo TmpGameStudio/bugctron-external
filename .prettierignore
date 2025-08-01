@@ -1,0 +1,53 @@
+# Build outputs
+dist/
+build/
+release/
+coverage/
+*.tsbuildinfo
+packages/*/dist/
+
+# History files
+.history/
+
+# Dependencies
+node_modules/
+packages/*/node_modules/
+
+# Generated files
+.erb/dll/
+*.d.ts
+*.map
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional files
+.DS_Store
+Thumbs.db
+
+# Electron specific
+app/
+*.asar
+
+# IDE files (if they contain generated content)
+.vscode/settings.json
+.idea/
+
+# Config files that should maintain their exact format
+*.config.js
+webpack.*.js
+.erb/configs/

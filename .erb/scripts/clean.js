@@ -8,6 +8,6 @@ const foldersToRemove = [
   webpackPaths.dllPath,
 ];
 
-foldersToRemove.forEach((folder) => {
+foldersToRemove.forEach(folder => {
   if (fs.existsSync(folder)) rimrafSync(folder);
 });

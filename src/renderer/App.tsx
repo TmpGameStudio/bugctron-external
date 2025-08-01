@@ -1,4 +1,6 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import { BugReportWidget } from 'bugctron-ui';
+import { createBugReport } from './api/BugReporterApi';
 import icon from '../../assets/icon.svg';
 import './App.css';
 
@@ -45,6 +47,13 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Hello />} />
       </Routes>
+      <BugReportWidget
+        onCreateReport={createBugReport}
+        onReportSubmit={report => {
+          // eslint-disable-next-line no-console
+          console.log('Bug report submitted:', report);
+        }}
+      />
     </Router>
   );
 }

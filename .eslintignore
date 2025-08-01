@@ -21,6 +21,10 @@ node_modules
 release/app/dist
 release/build
 .erb/dll
+.erb/configs/
+.erb/scripts/
+packages/*/dist/
+.history/
 
 .idea
 npm-debug.log.*
